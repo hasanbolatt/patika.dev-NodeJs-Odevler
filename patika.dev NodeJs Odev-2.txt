@@ -1,0 +1,37 @@
+const urunler =[
+    {urunAdi:'Buzdolabı',uretici:'Bosch'},
+    {urunAdi:'Televizyon',uretici:'Sony'},
+    {urunAdi:'Araba',uretici:'BMW'},
+    {urunAdi:'İphone XR',uretici:'Apple'}
+];
+
+const urunleriListele = () =>{
+    urunler.map(urun =>{
+        console.log(urun.urunAdi);
+    })
+};
+
+const urunEkle = (yeniUrun,callback) =>{
+    const promise1 = new Promise((resolve,reject)=>
+    {
+        urunler.push(yeniUrun);
+        resolve(urunler);
+        //reject('Bir hata oluştu..')
+    })
+
+    return promise1;
+};
+
+async function urunleriGoster()
+{
+    try {
+        console.log("Eklendikten sonra");
+        await urunEkle({urunAdi:'Ayakkabı',yazar:'Puma'});
+        urunleriListele();
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+urunleriListele();
+urunleriGoster();
